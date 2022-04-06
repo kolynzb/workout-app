@@ -6,7 +6,6 @@ const PlannerScreen = ({ navigation }: NativeStackHeaderProps) => {
   return (
     <View>
       <Text>PlannerScreen</Text>
-      <Button title="GO to hOME" onPress={() => navigation.navigate("Home")} />
     </View>
   );
 };

@@ -6,7 +6,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/HomeScreen";
 import PlannerScreen from "../screens/PlannerScreen";
 import { FontAwesome } from "@expo/vector-icons";
-import { FontAwesome5 } from "@expo/vector-icons";
+import { Entypo } from "@expo/vector-icons";
 
 export default function Navigation() {
   return (
@@ -34,7 +34,7 @@ const BottomTabNavigator = () => (
       component={PlannerScreen}
       options={{
         tabBarIcon: ({ color, size }) => (
-          <FontAwesome5 name="think-peaks" size={size} color={color} />
+          <Entypo name="add-to-list" size={size} color={color} />
         ),
       }}
     />
