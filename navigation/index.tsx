@@ -5,6 +5,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/HomeScreen";
 import PlannerScreen from "../screens/PlannerScreen";
+import { FontAwesome } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 
 export default function Navigation() {
   return (
@@ -17,14 +19,35 @@ const Tab = createBottomTabNavigator();
 
 const BottomTabNavigator = () => (
   <Tab.Navigator initialRouteName="Home">
-    <Tab.Screen name="Home" component={HomeScreen} />
-    <Tab.Screen name="Planner" component={PlannerScreen} />
+    <Tab.Screen
+      name="Home"
+      component={HomeScreen}
+      // options={{ unmountOnBlur: true }} unmounts when you leave tha page
+      options={{
+        tabBarIcon: ({ color, size }) => (
+          <FontAwesome name="home" size={size} color={color} />
+        ),
+      }}
+    />
+    <Tab.Screen
+      name="Planner"
+      component={PlannerScreen}
+      options={{
+        tabBarIcon: ({ color, size }) => (
+          <FontAwesome5 name="think-peaks" size={size} color={color} />
+        ),
+      }}
+    />
   </Tab.Navigator>
 );
 const Stack = createNativeStackNavigator();
 const RootNavigator = () => (
   <Stack.Navigator initialRouteName="Home">
-    <Stack.Screen name="Root" component={BottomTabNavigator} />
+    <Stack.Screen
+      name="Root"
+      component={BottomTabNavigator}
+      options={{ headerShown: false }}
+    />
   </Stack.Navigator>
 );
 
