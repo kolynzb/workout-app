@@ -1,13 +1,16 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Workout } from "../types/data";
+import { secToMin } from "../utils/time";
 import Mtext from "./styled/Mtext";
 
 const WorkoutItem = ({ item }: { item: Workout }) => {
   return (
     <View style={styles.container}>
       <Mtext style={styles.name}>{item.name}</Mtext>
-      <Mtext style={styles.duration}>Duration: {item.duration}</Mtext>
+      <Mtext style={styles.duration}>
+        Duration: {secToMin(item.duration)} min
+      </Mtext>
       <Mtext style={styles.difficulty}>Difficulty: {item.difficulty}</Mtext>
     </View>
   );
