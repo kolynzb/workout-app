@@ -1,4 +1,11 @@
-import { Button, FlatList, StyleSheet, Text, View } from "react-native";
+import {
+  Button,
+  FlatList,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import React from "react";
 import { NativeStackHeaderProps } from "@react-navigation/native-stack";
 import data from "../data/data.json";
@@ -6,6 +13,7 @@ import { Workout } from "../types/data";
 import WorkoutItem from "../components/WorkoutItem";
 import useCachedResources from "../hooks/useCachedResources";
 import Mtext from "../components/styled/Mtext";
+import Navigation from "../navigation";
 
 const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
   const isLoaded = useCachedResources();
@@ -15,7 +23,15 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
         <Mtext style={styles.header}>New Workouts</Mtext>
         <FlatList
           data={data as Array<Workout>}
-          renderItem={WorkoutItem}
+          renderItem={({ item }) => (
+            <Pressable
+              onPress={() =>
+                navigation.navigate("WorkoutDetail", { slug: item.slug })
+              }
+            >
+              <WorkoutItem item={item} />
+            </Pressable>
+          )}
           keyExtractor={(item) => item.slug}
         />
       </View>

@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Workout } from "../types/data";
-import { secToMin } from "../utils/time";
+import { formatSec } from "../utils/time";
 import Mtext from "./styled/Mtext";
 
 const WorkoutItem = ({ item }: { item: Workout }) => {
@@ -9,7 +9,7 @@ const WorkoutItem = ({ item }: { item: Workout }) => {
     <View style={styles.container}>
       <Mtext style={styles.name}>{item.name}</Mtext>
       <Mtext style={styles.duration}>
-        Duration: {secToMin(item.duration)} min
+        Duration: {formatSec(item.duration)}
       </Mtext>
       <Mtext style={styles.difficulty}>Difficulty: {item.difficulty}</Mtext>
     </View>

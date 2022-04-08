@@ -7,6 +7,7 @@ import HomeScreen from "../screens/HomeScreen";
 import PlannerScreen from "../screens/PlannerScreen";
 import { FontAwesome } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
+import WorkoutDetailScreen from "../screens/WorkoutDetailScreen";
 
 export default function Navigation() {
   return (
@@ -47,6 +48,11 @@ const RootNavigator = () => (
       name="Root"
       component={BottomTabNavigator}
       options={{ headerShown: false }}
+    />
+    <Stack.Screen
+      name="WorkoutDetail"
+      component={WorkoutDetailScreen}
+      options={{ title: "Workout Detail" }}
     />
   </Stack.Navigator>
 );
