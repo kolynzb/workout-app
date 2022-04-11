@@ -6,39 +6,36 @@ import {
   Text,
   View,
 } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NativeStackHeaderProps } from "@react-navigation/native-stack";
-import data from "../data/data.json";
 import { Workout } from "../types/data";
 import WorkoutItem from "../components/WorkoutItem";
 import useCachedResources from "../hooks/useCachedResources";
 import Mtext from "../components/styled/Mtext";
 import Navigation from "../navigation";
 
+import { useWorkouts } from "../hooks/useWorkouts";
+
 const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
-  const isLoaded = useCachedResources();
-  if (isLoaded) {
-    return (
-      <View style={styles.container}>
-        <Mtext style={styles.header}>New Workouts</Mtext>
-        <FlatList
-          data={data as Array<Workout>}
-          renderItem={({ item }) => (
-            <Pressable
-              onPress={() =>
-                navigation.navigate("WorkoutDetail", { slug: item.slug })
-              }
-            >
-              <WorkoutItem item={item} />
-            </Pressable>
-          )}
-          keyExtractor={(item) => item.slug}
-        />
-      </View>
-    );
-  } else {
-    return null;
-  }
+  const workouts = useWorkouts();
+  return (
+    <View style={styles.container}>
+      <Mtext style={styles.header}>New Workouts</Mtext>
+      <FlatList
+        data={workouts}
+        renderItem={({ item }) => (
+          <Pressable
+            onPress={() =>
+              navigation.navigate("WorkoutDetail", { slug: item.slug })
+            }
+          >
+            <WorkoutItem item={item} />
+          </Pressable>
+        )}
+        keyExtractor={(item) => item.slug}
+      />
+    </View>
+  );
 };
 
 export default HomeScreen;
