@@ -1,10 +1,18 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, StyleProp, ViewStyle } from "react-native";
 import { Workout } from "../types/data";
 import { formatSec } from "../utils/time";
 import Mtext from "./styled/Mtext";
 
-const WorkoutItem = ({ item }: { item: Workout }) => {
+const WorkoutItem = ({
+  item,
+  children,
+  childStyles = {},
+}: {
+  item: Workout;
+  children?: React.ReactNode;
+  childStyles?: StyleProp<ViewStyle>;
+}) => {
   return (
     <View style={styles.container}>
       <Mtext style={styles.name}>{item.name}</Mtext>
@@ -12,6 +20,7 @@ const WorkoutItem = ({ item }: { item: Workout }) => {
         Duration: {formatSec(item.duration)}
       </Mtext>
       <Mtext style={styles.difficulty}>Difficulty: {item.difficulty}</Mtext>
+      {children && <View style={childStyles}>{children}</View>}
     </View>
   );
 };
