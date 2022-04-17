@@ -1,5 +1,5 @@
 import { Button, StyleSheet, View } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Mtext from "../components/styled/Mtext";
 import { NativeStackHeaderProps } from "@react-navigation/native-stack";
 import { useWorkoutBySlug } from "../hooks/useWorkoutsBySlug";
@@ -21,10 +21,19 @@ const WorkoutDetailScreen = ({
 }: NativeStackHeaderProps & DetailParams) => {
   const workout = useWorkoutBySlug(route.params.slug);
   const [sequence, setSequence] = useState<SequenceItem[]>([]);
+  // const [countDown, setCountDown] = useState<number>(-1);
+  const [trackerIdx, setTrackerIdx] = useState<number>(-1);
 
   const addItemToSequence = (idx: number) => {
     setSequence([...sequence, workout!.sequence[idx]]);
+    setTrackerIdx(idx);
   };
+
+  useEffect(() => {
+    if (trackerIdx == -1) {
+    }
+    console.log("Tracker has been changed");
+  }, [trackerIdx]);
 
   return (
     <View style={styles.container}>
